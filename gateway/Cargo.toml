@@ -1,0 +1,27 @@
+[package]
+name = "gateway"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# MySQL / MariaDB (local Raspberry Pi DB)
+sqlx = { version = "0.8", features = ["mysql", "runtime-tokio-rustls", "chrono"] }
+
+# MongoDB Atlas
+mongodb = "3"
+
+# Serialisation (needed for both sqlx row mapping and BSON documents)
+serde = { version = "1", features = ["derive"] }
+
+# Date/time (maps MySQL DATETIME <-> chrono::NaiveDateTime)
+chrono = { version = "0.4", features = ["serde"] }
+
+# Load configuration from a .env file
+dotenvy = "0.15"
+
+# Structured logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
